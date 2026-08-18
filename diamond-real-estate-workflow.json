@@ -1,0 +1,916 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "admin/add-property",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "79ab8a3b-b027-40be-aaff-9899a2ff5d5b",
+      "name": "Admin Add Property1",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        -352,
+        64
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "wh-add-prop-01"
+    },
+    {
+      "parameters": {
+        "tableId": "properties",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "title",
+              "fieldValue": "={{ $json.body.title }}"
+            },
+            {
+              "fieldId": "property_type",
+              "fieldValue": "={{ $json.body.type }}"
+            },
+            {
+              "fieldId": "price",
+              "fieldValue": "={{ $json.body.price }}"
+            },
+            {
+              "fieldId": "location",
+              "fieldValue": "={{ $json.body.location }}"
+            },
+            {
+              "fieldId": "bedrooms",
+              "fieldValue": "={{ $json.body.bedrooms }}"
+            },
+            {
+              "fieldId": "bathrooms",
+              "fieldValue": "={{ $json.body.bathrooms }}"
+            },
+            {
+              "fieldId": "size_sqft",
+              "fieldValue": "={{ $json.body.size }}"
+            },
+            {
+              "fieldId": "description",
+              "fieldValue": "={{ $json.body.description }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "Available"
+            },
+            {
+              "fieldId": "image_urls",
+              "fieldValue": "={{ $json.body.image_urls }}"
+            }
+          ]
+        }
+      },
+      "id": "4e57c5da-a405-496d-ae82-a998d058b69c",
+      "name": "Supabase Insert Property1",
+      "type": "n8n-nodes-base.supabase",
+      "position": [
+        -96,
+        64
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "supabaseApi": {
+          "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"success\",\n  \"message\": \"Property successfully added!\"\n}",
+        "options": {}
+      },
+      "id": "05964c44-90b5-4b72-afe0-145e2f6fe555",
+      "name": "Respond Add Success1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        144,
+        64
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "admin/update-property",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "265ffff6-a4f8-453a-a161-e5b096369cb6",
+      "name": "Admin Update Property1",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        496,
+        64
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "wh-update-prop-01"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "properties"
+      },
+      "id": "5d044a7a-d09b-49b9-8ca7-15eefa78aab8",
+      "name": "Supabase Update Property1",
+      "type": "n8n-nodes-base.supabase",
+      "position": [
+        752,
+        64
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "supabaseApi": {
+          "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"success\",\n  \"message\": \"Property status successfully updated!\"\n}",
+        "options": {}
+      },
+      "id": "c92001b1-ddc3-44d1-a013-d3919413327c",
+      "name": "Respond Update Success1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        992,
+        64
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "admin/delete-property",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "4b089ffa-9297-4257-ab01-9366bd607320",
+      "name": "Admin Delete Property1",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        1312,
+        64
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "wh-delete-prop-01"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "tableId": "properties",
+        "filters": {
+          "conditions": []
+        }
+      },
+      "id": "fa29cad9-fdba-408b-b525-200c661a548e",
+      "name": "Supabase Delete Property1",
+      "type": "n8n-nodes-base.supabase",
+      "position": [
+        1568,
+        64
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "supabaseApi": {
+          "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"success\",\n  \"message\": \"Property successfully deleted!\"\n}",
+        "options": {}
+      },
+      "id": "f3c9f08b-f906-4707-959a-e35b8d87dfc3",
+      "name": "Respond Delete Success1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1808,
+        64
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "client/b2b-request",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "30b7ce54-0823-4465-a9d7-ce189c3ff850",
+      "name": "B2B Request Form1",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        560,
+        368
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "wh-b2b-req-01"
+    },
+    {
+      "parameters": {
+        "tableId": "b2b_requests",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "trade",
+              "fieldValue": "={{ $json.body.trade }}"
+            },
+            {
+              "fieldId": "company",
+              "fieldValue": "={{ $json.body.company }}"
+            },
+            {
+              "fieldId": "client_name",
+              "fieldValue": "={{ $json.body.contact }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.body.email }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.body.phone }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $json.body.city }}"
+            },
+            {
+              "fieldId": "message",
+              "fieldValue": "={{ $json.body.message }}"
+            },
+            {
+              "fieldId": "source",
+              "fieldValue": "={{ $json.body.source }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "Pending"
+            }
+          ]
+        }
+      },
+      "id": "8e1b88b2-7efa-4d5d-8490-ede67af42951",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "position": [
+        816,
+        368
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "supabaseApi": {
+          "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "YOUR_ADMIN_EMAIL@example.com",
+        "subject": "=🚨 New B2B Lead: {{ $('B2B Request Form1').item.json.body.trade }} - {{ $('B2B Request Form1').item.json.body.company }}",
+        "message": "=Company: {{ $('B2B Request Form1').item.json.body.company }}\nContact Person: {{ $('B2B Request Form1').item.json.body.contact }}\nTrade/Service: {{ $('B2B Request Form1').item.json.body.trade }}\nEmail: {{ $('B2B Request Form1').item.json.body.email }}\nPhone: {{ $('B2B Request Form1').item.json.body.phone }}\nCity: {{ $('B2B Request Form1').item.json.body.city }}\nMessage: {{ $('B2B Request Form1').item.json.body.message }}",
+        "options": {}
+      },
+      "id": "879abe84-cd19-4627-a470-ae5185ee09a2",
+      "name": "Alert Admin (B2B)1",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        1056,
+        368
+      ],
+      "typeVersion": 2.2,
+      "webhookId": "02e231c7-3f7f-4f6c-acea-7426469bbf5a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"success\",\n  \"message\": \"B2B request received and saved successfully.\"\n}",
+        "options": {}
+      },
+      "id": "98cee1dc-6568-4725-b1ae-10978623ac12",
+      "name": "Respond B2B1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1312,
+        368
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.first().json;\nconst userMessage = (inputData.body && inputData.body.message) ? inputData.body.message.toLowerCase() : '';\n\n// Comprehensive FAQ, Policy, Company Overview, and Operational Knowledge Base Layer\nconst faqDatabase = [\n  // 1. Operating Hours & Timing\n  {\n    keywords: ['hours', 'office ' ,'timing', 'open', 'time', 'working hours', 'schedule'],\n    answer: \"Diamond Real Estate is open Monday through Saturday from 9:00 AM to 7:00 PM (PKT). We are closed on Sundays.\"\n  },\n  // 2. Office Location & Address\n  {\n    keywords: ['location', 'address', 'where', 'office', 'headquarters', 'map'],\n    answer: \"Our main corporate office is located in Lahore, Pakistan, serving premium commercial and residential properties across top metropolitan areas.\"\n  },\n  // 3. Contact & Support Information\n  {\n    keywords: ['contact', 'phone', 'support', 'call', 'email', 'reach out', 'helpdesk'],\n    answer: \"You can reach our support team directly via email or through our online property booking and B2B request forms.\"\n  },\n  // 4. Greetings & Introduction\n  {\n    keywords: ['hello', 'hi', 'hey', 'start', 'greetings', 'good morning', 'good evening'],\n    answer: \"Hello! Welcome to Diamond Real Estate. How can I help you discover, lease, or list properties today?\"\n  },\n  // 5. About Company / Mission\n  {\n    keywords: ['about', 'who are you', 'company', 'diamond real estate', 'mission', 'background'],\n    answer: \"Diamond Real Estate is a premier technology-driven property advisory firm specializing in residential homes, luxury apartments, and commercial investments with seamless digital booking workflows.\"\n  },\n  // 6. Terms of Service & Legal Policies\n  {\n    keywords: ['terms', 'policy', 'conditions', 'agreement', 'rules', 'legal'],\n    answer: \"Our Terms of Service require users to provide accurate contact information (including valid phone numbers and ID verification where applicable) for property viewings and B2B requests. All listings are subject to availability.\"\n  },\n  // 7. Privacy & Data Protection\n  {\n    keywords: ['privacy', 'data', 'secure', 'information', 'confidential', 'gdpr'],\n    answer: \"We take your privacy seriously. Data submitted through our web forms and chat advisors (such as names, phone numbers, and National ID cards) is securely stored in our encrypted Supabase database strictly for booking and verification purposes.\"\n  },\n  // 8. Booking Viewings & Meetings\n  {\n    keywords: ['book', 'meeting', 'visit', 'schedule', 'viewing', 'appointment', 'tour'],\n    answer: \"You can schedule a property viewing directly through our chatbot by providing your Name, Phone Number, Email, and National ID Card number, or via our online scheduling links.\"\n  },\n  // 9. B2B Services & Commercial Solutions\n  {\n    keywords: ['b2b', 'business', 'service', 'contractor', 'commercial', 'trade', 'electrician', 'builder'],\n    answer: \"We offer tailored B2B solutions and commercial partnerships. You can submit your company trade request through our dedicated B2B portal to get connected with our project leads.\"\n  },\n  // 10. Property Types Available\n  {\n    keywords: ['property type', 'apartment', 'house', 'commercial', 'plot', 'villa', 'types', 'inventory'],\n    answer: \"We feature a wide range of properties including modern residential apartments, luxury houses, commercial offices, and development plots.\"\n  },\n  // 11. Price Ranges & Budget Filtering\n  {\n    keywords: ['price', 'budget', 'cost', 'expensive', 'cheap', 'affordable', 'rates'],\n    answer: \"Our property portfolio caters to diverse budgets. You can search properties dynamically by stating your maximum budget or price preferences directly to our advisor.\"\n  },\n  // 12. Commission & Fees\n  {\n    keywords: ['commission', 'fee', 'charges', 'brokerage', 'hidden charges', 'cost to buy'],\n    answer: \"Our standard advisory and brokerage fees are transparently outlined during the final acquisition or lease agreement process. Initial property consultations via our AI advisor are completely free.\"\n  },\n  // 13. Cancellation & Rescheduling Policy\n  {\n    keywords: ['cancel', 'reschedule', 'change appointment', 'refund', 'modify meeting'],\n    answer: \"If you need to reschedule or cancel a property viewing appointment, please notify us at least 24 hours in advance through email or by contacting our support team.\"\n  },\n  // 14. Required Documents for Booking/Purchase\n  {\n    keywords: ['documents', 'id card', 'cnic', 'paperwork', 'verification', 'required'],\n    answer: \"For property viewings and official agreements, clients are required to provide a valid National ID Card (CNIC) number, active phone number, and a verified email address for security and compliance.\"\n  },\n  // 15. Renting vs Buying Options\n  {\n    keywords: ['rent', 'buy', 'lease', 'purchase', 'sale', 'renting'],\n    answer: \"We handle both rental agreements and direct property sales/purchases. Let us know whether you are looking to rent or buy so we can filter the right options for you.\"\n  },\n  // 16. Financing & Mortgage Assistance\n  {\n    keywords: ['loan', 'mortgage', 'installment', 'financing', 'bank', 'payment plan'],\n    answer: \"While we specialize in direct property listings and secure transactions, our advisors can guide you through available banking partners and flexible payment structures for eligible listings.\"\n  },\n  // 17. Listing Your Property with Us\n  {\n    keywords: ['list property', 'sell my house', 'advertise', 'post property', 'vendor'],\n    answer: \"Looking to list your property? Reach out via our B2B or support channels with your property details, location, and expected valuation to get featured on our platform.\"\n  },\n  // 18. Website & Technical Support\n  {\n    keywords: ['website', 'bug', 'error', 'login', 'portal', 'tech support', 'app'],\n    answer: \"If you encounter any technical issues using our web platform or AI chatbot, please report it directly to our support email with a description of the error.\"\n  },\n  // 19. Agent Availability\n  {\n    keywords: ['agent', 'human', 'talk to person', 'representative', 'real person'],\n    answer: \"Our AI Advisor is available 24/7 to assist you instantly. If you require a human real estate specialist, our team reviews inquiries daily during business hours and will follow up via phone or email.\"\n  },\n  // 20. Future Developments & New Projects\n  {\n    keywords: ['new project', 'upcoming', 'development', 'phase', 'future', 'under construction'],\n    answer: \"We frequently update our inventory with upcoming real estate developments and new construction phases. Ask our chatbot about specific locations to check current availability.\"\n  }\n];\n\nlet matchedAnswer = null;\nfor (const item of faqDatabase) {\n  if (item.keywords.some(kw => userMessage.includes(kw))) {\n    matchedAnswer = item.answer;\n    break;\n  }\n}\n\nif (matchedAnswer) {\n  return [{ \n    json: { \n      isFaqMatch: Boolean(true), \n      reply: matchedAnswer, \n      sessionId: inputData.body && inputData.body.sessionId ? inputData.body.sessionId : 'default-session' \n    } \n  }];\n}\n\nreturn [{ \n  json: { \n    isFaqMatch: Boolean(false), \n    originalInput: inputData \n  } \n}];"
+      },
+      "id": "34032843-4cc2-4b80-9dc5-c28f46175fd5",
+      "name": "Optional RAG / FAQ Layer",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -320,
+        688
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "faq-check",
+              "leftValue": "={{ $json.isFaqMatch }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "52cd891b-ba90-46be-9dd7-ddbf35988eea",
+      "name": "Is FAQ Match?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -96,
+        688
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ \"reply\": $json.reply }) }}",
+        "options": {}
+      },
+      "id": "138fead4-e3c7-4328-b8b5-58daf9b36e41",
+      "name": "Respond FAQ Direct",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        -192,
+        992
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "75e41787-9467-4694-8a9d-e7562589a08a",
+      "name": "AI Chatbot1",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        -528,
+        688
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "wh-chat-01"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.originalInput.body.message }}",
+        "options": {
+          "systemMessage": "=You are the official Diamond Real Estate AI Advisor. Your primary mission is to help clients discover and secure properties seamlessly.\n\nCurrent Date and Time: {{ $now.setZone('Asia/Karachi').toFormat('yyyy-MM-dd HH:mm:ss') }}"
+        }
+      },
+      "id": "fdf5b20f-e834-444f-bfca-921a107830d9",
+      "name": "24/7 AI Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        128,
+        592
+      ],
+      "typeVersion": 3.1
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "id": "076fc133-50d9-4811-9fca-fc0a651f5614",
+      "name": "OpenAI Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        192,
+        912
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=={{ $('AI Chatbot1').item.json.body.sessionId || $('Optional RAG / FAQ Layer').item.json.originalInput.body.sessionId || 'default-session' }}"
+      },
+      "id": "df894e4d-4c79-42cc-ac81-7a1790fde70b",
+      "name": "Buffer Memory1",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        336,
+        912
+      ],
+      "typeVersion": 1.4
+    },
+    {
+      "parameters": {
+        "name": "supabase_database_tool",
+        "description": "Use this tool to search properties ('action': 'search', 'table': 'properties') or book meetings ('action': 'insert', 'table': 'meetings').",
+        "jsCode": "const inputData = $input.first().json;\nif (typeof inputData === 'string') return JSON.stringify({ error: \"Send JSON.\" });\nconst action = inputData.action || 'search';\nlet table = inputData.table || 'properties';\nlet queryParams = inputData.queryParams || '';\nlet bodyData = inputData.body || null;\n// NOTE: Set these via n8n environment variables / credentials rather than hardcoding.\nconst SUPABASE_URL = $env.SUPABASE_URL + '/rest/v1/';\nconst SUPABASE_KEY = $env.SUPABASE_SERVICE_ROLE_KEY;\nlet url = SUPABASE_URL + table;\nlet method = 'GET';\nif (action === 'search') {\n  method = 'GET';\n  if (queryParams) url += '?' + encodeURI(queryParams);\n} else if (action === 'insert') {\n  method = 'POST';\n}\nlet options = {\n  method: method,\n  url: url,\n  headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },\n  json: true\n};\nif (method === 'POST' && bodyData) options.body = bodyData;\ntry {\n  const data = await this.helpers.httpRequest(options);\n  return JSON.stringify({ success: true, data: data });\n} catch (error) {\n  return JSON.stringify({ success: false, error: error.message });\n}",
+        "specifyInputSchema": true,
+        "jsonSchemaExample": "{\n  \"message\": \"Show me an apartment\",\n  \"sessionId\": \"test-session-001\"\n}"
+      },
+      "id": "da74ef5a-b32c-4e76-8310-aa82fa0bfb91",
+      "name": "Code Tool1",
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "position": [
+        480,
+        928
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ \"reply\": $node[\"24/7 AI Agent1\"].json.output }) }}",
+        "options": {}
+      },
+      "id": "e7774469-bb79-4f17-9bf9-f4eaac3f5a63",
+      "name": "Respond AI1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        432,
+        592
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "client/voice-agent",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "d0675de2-9589-4489-99bc-dfcc8d783185",
+      "name": "ElevenLabs Voice Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        800,
+        704
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "wh-voice-master-01"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.first().json;\n\nlet userMessage = '';\nif (inputData.body) {\n  if (typeof inputData.body.message === 'string') {\n    userMessage = inputData.body.message;\n  } else if (typeof inputData.body.text === 'string') {\n    userMessage = inputData.body.text;\n  } else if (inputData.body.arguments && typeof inputData.body.arguments.message === 'string') {\n    userMessage = inputData.body.arguments.message;\n  } else if (typeof inputData.body.query === 'string') {\n    userMessage = inputData.body.query;\n  }\n}\nuserMessage = userMessage.toLowerCase().trim();\n\nconst faqDatabase = [\n  {\n    keywords: ['hours', 'timing', 'open', 'time', 'working hours', 'schedule'],\n    answer: \"Diamond Real Estate is open Monday through Saturday from 9:00 AM to 7:00 PM Pakistan Standard Time.\"\n  },\n  {\n    keywords: ['location', 'address', 'where', 'office', 'headquarters', 'map'],\n    answer: \"Our main corporate office is located in Lahore, Pakistan, serving premium commercial and residential properties.\"\n  },\n  {\n    keywords: ['contact', 'phone', 'support', 'call', 'email', 'reach out'],\n    answer: \"You can reach our team via email or through our online booking forms.\"\n  },\n  {\n    keywords: ['hello', 'hi', 'hey', 'start', 'greetings'],\n    answer: \"Hello! Welcome to Diamond Real Estate. How can I assist you with your property search today?\"\n  },\n  {\n    keywords: ['about', 'who are you', 'company', 'diamond real estate'],\n    answer: \"Diamond Real Estate is a premier technology-driven property advisory firm specializing in residential and commercial investments.\"\n  },\n  {\n    keywords: ['book', 'meeting', 'visit', 'schedule', 'viewing', 'appointment'],\n    answer: \"You can schedule a property viewing by providing your name, phone number, and national ID card details to our team.\"\n  }\n];\n\nlet matchedAnswer = null;\nfor (const item of faqDatabase) {\n  if (item.keywords.some(kw => userMessage.includes(kw))) {\n    matchedAnswer = item.answer;\n    break;\n  }\n}\n\nif (matchedAnswer) {\n  return [{\n    json: {\n      route: \"faq\",\n      output: matchedAnswer\n    }\n  }];\n}\n\nreturn [{\n  json: {\n    route: \"supabase\",\n    userMessage: userMessage\n  }\n}];"
+      },
+      "id": "bf81655a-6985-4e48-8c0a-5c1db4dde0af",
+      "name": "Voice RAG & Router1",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1024,
+        704
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "faq",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "FAQ Route"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "supabase",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Supabase Route"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "91ee1a7d-ea9c-4c62-b5d3-83e7afe95a72",
+      "name": "Route Traffic1",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        1248,
+        704
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "properties",
+        "returnAll": true
+      },
+      "id": "c6955e5d-15c1-4a17-983e-ca8c6fb19476",
+      "name": "Supabase Fetch Properties1",
+      "type": "n8n-nodes-base.supabase",
+      "position": [
+        1472,
+        832
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "supabaseApi": {
+          "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const properties = $input.all().map(item => item.json);\nconst rawQuery = $('Voice RAG & Router1').first().json.userMessage || '';\nconst query = rawQuery.toLowerCase().trim();\n\n// Split query into individual search keywords (e.g., \"green\", \"valley\") for flexible matching\nconst keywords = query.split(/\\s+/).filter(word => word.length > 2);\n\nconst matched = properties.filter(p => {\n  const title = (p.title || '').toLowerCase();\n  const location = (p.location || '').toLowerCase();\n  const type = (p.property_type || '').toLowerCase();\n  \n  // Check if any keyword matches title, location, or property type\n  return keywords.some(kw => title.includes(kw) || location.includes(kw) || type.includes(kw)) ||\n         title.includes(query) || location.includes(query);\n});\n\nlet responseText = \"\";\nif (matched.length > 0) {\n  const topProp = matched[0];\n  responseText = `I found ${topProp.title} located in ${topProp.location}, priced at ${topProp.price}. Would you like to schedule a viewing?`;\n} else {\n  responseText = `I checked our listings for \"${rawQuery}\", but couldn't find an exact match. However, we have several other residential and commercial properties available. Would you like to hear about them?`;\n}\n\nreturn [{ json: { output: responseText } }];"
+      },
+      "id": "5e17d866-ca6a-4111-9513-2bb69a6075c5",
+      "name": "Format Property Response1",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1680,
+        832
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ \"output\": $json.output }) }}",
+        "options": {}
+      },
+      "id": "6689b52f-c5fb-4a67-b01e-122f6d4ee1b7",
+      "name": "Respond to ElevenLabs1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1920,
+        704
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "content": "## Property Add Node\n**Admin can Add a new Property Directly From Website In Database Without any Knowledge of PostgreSQL**\n",
+        "height": 176
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        -80
+      ],
+      "id": "a88c31db-f82b-4f91-9ca9-ebf6eb48f524",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Property update Node\n**Admin can update a new property directly from the website to the database without any Knowledge of PostgreSQL **\n",
+        "height": 192,
+        "width": 272
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        384,
+        -96
+      ],
+      "id": "e725cf22-8484-480e-867a-f8468a897d29",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Property Delete Node\n**Admin can Delete new property directly from the website to the database without any Knowledge of postgresql**\n",
+        "height": 192,
+        "width": 272
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        -80
+      ],
+      "id": "171dccaa-e4da-479c-a4cf-845ba7ea3880",
+      "name": "Sticky Note2"
+    }
+  ],
+  "connections": {
+    "Admin Add Property1": {
+      "main": [
+        [
+          {
+            "node": "Supabase Insert Property1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Insert Property1": {
+      "main": [
+        [
+          {
+            "node": "Respond Add Success1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Admin Update Property1": {
+      "main": [
+        [
+          {
+            "node": "Supabase Update Property1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Update Property1": {
+      "main": [
+        [
+          {
+            "node": "Respond Update Success1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Admin Delete Property1": {
+      "main": [
+        [
+          {
+            "node": "Supabase Delete Property1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Delete Property1": {
+      "main": [
+        [
+          {
+            "node": "Respond Delete Success1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "B2B Request Form1": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Alert Admin (B2B)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alert Admin (B2B)1": {
+      "main": [
+        [
+          {
+            "node": "Respond B2B1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Optional RAG / FAQ Layer": {
+      "main": [
+        [
+          {
+            "node": "Is FAQ Match?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is FAQ Match?": {
+      "main": [
+        [
+          {
+            "node": "Respond FAQ Direct",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "24/7 AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Chatbot1": {
+      "main": [
+        [
+          {
+            "node": "Optional RAG / FAQ Layer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "24/7 AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Respond AI1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "24/7 AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buffer Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "24/7 AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Tool1": {
+      "ai_tool": [
+        [
+          {
+            "node": "24/7 AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ElevenLabs Voice Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Voice RAG & Router1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice RAG & Router1": {
+      "main": [
+        [
+          {
+            "node": "Route Traffic1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Traffic1": {
+      "main": [
+        [
+          {
+            "node": "Respond to ElevenLabs1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase Fetch Properties1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Fetch Properties1": {
+      "main": [
+        [
+          {
+            "node": "Format Property Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "YOUR_INSTANCE_ID"
+  }
+}
